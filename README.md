@@ -7,7 +7,6 @@ simple excel writer in Rust
 ## Example
 
 ```rust,no_run
-#[macro_use]
 extern crate simple_excel_writer as excel;
 
 use excel::*;
@@ -46,6 +45,9 @@ fn main() {
 - support style
 
 ## Change Log
+
+#### 0.2.0 (2019-06-11)
+- basic support for outputting formulas
 
 #### 0.1.4 (2017-03-24)
 - escape xml characters.
