@@ -618,75 +618,75 @@ impl Workbook {
     }
 
     /*
-    fn create_sample_sheet(writer: &mut Write) -> Result<()> {
-        let xml = r#"<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
-           xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-    <dimension ref="A1:E4"/>
-    <cols>
-        <col min="1" max="1" width="6.7109375" customWidth="1"/>
-        <col min="2" max="2" width="7.7109375" customWidth="1"/>
-        <col min="3" max="3" width="10.7109375" customWidth="1"/>
-        <col min="4" max="4" width="20.7109375" customWidth="1"/>
-        <col min="5" max="5" width="20.7109375" customWidth="1"/>
-    </cols>
-    <sheetData>
-        <row r="1">
-            <c r="A1">
-                <v>1</v>
-            </c>
-            <c r="B1">
-                <v>2</v>
-            </c>
-            <c r="C1">
-                <v>3</v>
-            </c>
-        </row>
-        <row r="2">
-            <c r="A2" t="b">
-                <v>1</v>
-            </c>
-            <c r="B2" t="b">
-                <v>0</v>
-            </c>
-            <c r="D2" t="str">
-                <v>sheetjs</v>
-            </c>
-        </row>
-        <row r="3">
-            <c r="A3" t="str">
-                <v>foo</v>
-            </c>
-            <c r="B3" t="str">
-                <v>bar</v>
-            </c>
-            <c r="C3" s="1">
-                <v>41689.604166666664</v>
-            </c>
-            <c r="D3" t="str">
-                <v>0.3</v>
-            </c>
-        </row>
-        <row r="4">
-            <c r="A4" t="str">
-                <v>baz2222</v>
-            </c>
-            <c r="C4" t="str">
-                <v>qux姓名</v>
-            </c>
-        </row>
-        <row r="5">
-            <c r="A5" t="str">
-                <v>baz2222</v>
-            </c>
-            <c r="E5" t="str">
-                <v>qux姓名</v>
-            </c>
-        </row>
-    </sheetData>
-</worksheet>
-        "#;
-        writer.write_all(xml.as_bytes())
-    }
-*/
+        fn create_sample_sheet(writer: &mut Write) -> Result<()> {
+            let xml = r#"<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+               xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+        <dimension ref="A1:E4"/>
+        <cols>
+            <col min="1" max="1" width="6.7109375" customWidth="1"/>
+            <col min="2" max="2" width="7.7109375" customWidth="1"/>
+            <col min="3" max="3" width="10.7109375" customWidth="1"/>
+            <col min="4" max="4" width="20.7109375" customWidth="1"/>
+            <col min="5" max="5" width="20.7109375" customWidth="1"/>
+        </cols>
+        <sheetData>
+            <row r="1">
+                <c r="A1">
+                    <v>1</v>
+                </c>
+                <c r="B1">
+                    <v>2</v>
+                </c>
+                <c r="C1">
+                    <v>3</v>
+                </c>
+            </row>
+            <row r="2">
+                <c r="A2" t="b">
+                    <v>1</v>
+                </c>
+                <c r="B2" t="b">
+                    <v>0</v>
+                </c>
+                <c r="D2" t="str">
+                    <v>sheetjs</v>
+                </c>
+            </row>
+            <row r="3">
+                <c r="A3" t="str">
+                    <v>foo</v>
+                </c>
+                <c r="B3" t="str">
+                    <v>bar</v>
+                </c>
+                <c r="C3" s="1">
+                    <v>41689.604166666664</v>
+                </c>
+                <c r="D3" t="str">
+                    <v>0.3</v>
+                </c>
+            </row>
+            <row r="4">
+                <c r="A4" t="str">
+                    <v>baz2222</v>
+                </c>
+                <c r="C4" t="str">
+                    <v>qux姓名</v>
+                </c>
+            </row>
+            <row r="5">
+                <c r="A5" t="str">
+                    <v>baz2222</v>
+                </c>
+                <c r="E5" t="str">
+                    <v>qux姓名</v>
+                </c>
+            </row>
+        </sheetData>
+    </worksheet>
+            "#;
+            writer.write_all(xml.as_bytes())
+        }
+    */
 }

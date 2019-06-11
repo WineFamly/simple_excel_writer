@@ -20,7 +20,7 @@ pub fn zip_files(in_path: &str, output_file: &str) -> Result<()> {
 /// Zipper walks the directory recursively and adds the files and folders found to a zipwriter
 fn zipper(writer: &mut ZipWriter<File>, base_path: &Path, prefix: Option<String>) -> Result<()> {
     let prefix = if let Some(prefix) = prefix {
-        format!("{}", &prefix)
+        (&prefix).to_string()
     } else {
         String::new()
     };
@@ -34,7 +34,7 @@ fn zipper(writer: &mut ZipWriter<File>, base_path: &Path, prefix: Option<String>
 
     let mut buffer = vec![];
     for entry in dir {
-        let entry: fs::DirEntry = entry.map_err(|e| Error::from(e))?;
+        let entry: fs::DirEntry = entry.map_err(Error::from)?;
         // set the current entry we are looking at
         let cur_entry = entry.path();
 
