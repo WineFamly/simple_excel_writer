@@ -13,8 +13,8 @@ impl<T> Lock<T> where T: std::string::ToString {
 }
 
 pub struct CellReference {
-    column: Lock<String>,
-    row: Option<Lock<i32>>,
+    pub column: Lock<String>,
+    pub row: Option<Lock<i32>>,
 }
 
 impl CellReference {
@@ -30,9 +30,9 @@ impl ValueReference for CellReference {
 }
 
 pub struct CellRange {
-    sheet: Option<String>,
-    from: CellReference,
-    to: Option<CellReference>,
+    pub sheet: Option<String>,
+    pub from: CellReference,
+    pub to: Option<CellReference>,
 }
 
 impl CellRange {
