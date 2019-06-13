@@ -11,7 +11,6 @@
 //! #### Sample
 //!
 //! ```
-//! #[macro_use]
 //! extern crate simple_excel_writer;
 //! use simple_excel_writer as excel;
 //!
@@ -53,6 +52,7 @@
 
 extern crate zip;
 
+mod formula;
 pub mod sheet;
 mod utilities;
 pub mod workbook;

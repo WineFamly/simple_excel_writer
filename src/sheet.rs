@@ -1,3 +1,6 @@
+use formula::render_formula;
+use formula::Formula;
+use crate::formula::ValueReference;
 use std::io::{Result, Write};
 
 #[macro_export]
@@ -9,16 +12,6 @@ macro_rules! row {
             row
         }
     };
-}
-
-#[macro_export]
-macro_rules! blank {
-    ($x:expr) => {{
-        CellValue::Blank($x)
-    }};
-    () => {{
-        CellValue::Blank(1)
-    }};
 }
 
 #[derive(Default)]
@@ -45,13 +38,19 @@ pub struct Column {
     pub width: f32,
 }
 
-#[derive(Clone)]
+// #[derive(Clone)]
 pub enum CellValue {
     Bool(bool),
     Number(f64),
     String(String),
     Blank(usize),
-    Formula(String),
+    Formula(Formula),
+}
+
+impl ValueReference for CellValue {
+    fn render(&self) -> String {
+        render_value(self)
+    }
 }
 
 pub struct SheetWriter<'a, 'b, Writer>
@@ -121,7 +120,7 @@ impl Row {
         }
     }
 
-    pub fn add_formula(&mut self, value: String) {
+    pub fn add_formula(&mut self, value: Formula) {
         self.max_col_index += 1;
         self.cells.push(Cell {
             column_index: self.max_col_index,
@@ -157,9 +156,19 @@ impl Row {
     }
 }
 
-impl ToCellValue for CellValue {
-    fn to_cell_value(&self) -> CellValue {
-        self.clone()
+// impl ToCellValue for CellValue {
+//     fn to_cell_value(&self) -> CellValue {
+//         self.clone()
+//     }
+// }
+
+fn render_value(cv: &CellValue) -> String {
+    match *cv {
+        CellValue::Bool(b) => if b { String::from("1") } else { String::from("0") },
+        CellValue::Number(n) => n.to_string(),
+        CellValue::String(ref s) => s.to_string(),
+        CellValue::Formula(ref s) => render_formula(s),
+        CellValue::Blank(_) => String::new()
     }
 }
 
@@ -183,10 +192,11 @@ fn write_value(cv: &CellValue, ref_id: String, writer: &mut Write) -> Result<()>
             writer.write_all(s.as_bytes())?;
         }
         CellValue::Formula(ref s) => {
+            let f = render_formula(s);
             let s = format!(
                 "<c r=\"{}\" t=\"str\"><f>{}</f></c>",
                 ref_id,
-                escape_xml(&s)
+                escape_xml(&f)
             );
             writer.write_all(s.as_bytes())?;
         }

@@ -21,7 +21,8 @@ fn main() {
             "<xml><tag>\"Hello\" & 'World'</tag></xml>"
         ])?;
         sw.append_blank_rows(2);
-        sw.append_row(row!["Tony", blank!(720), "retired"]) // A5: Tony , AAT5 : retired
+        Ok(())
+        // sw.append_row(row!["Tony", blank!(720), "retired"]) // A5: Tony , AAT5 : retired
     })
     .expect("write excel error!");
 
