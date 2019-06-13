@@ -52,7 +52,7 @@
 
 extern crate zip;
 
-mod formula;
+pub mod formula;
 pub mod sheet;
 mod utilities;
 pub mod workbook;
