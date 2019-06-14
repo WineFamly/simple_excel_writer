@@ -53,6 +53,12 @@ impl CellRange {
     }
 }
 
+impl ValueReference for CellRange {
+    fn render(&self) -> String {
+        self.render()
+    }
+}
+
 #[macro_export]
 macro_rules! blank {
     ($x:expr) => {{
@@ -101,6 +107,8 @@ pub enum Formula {
     Concat(Vec<Box<ValueReference>>),
     IfError(Box<Formula>, Box<ValueReference>),
     VerticalLookUp(Box<ValueReference>, CellRange, i32, bool),
+    Sum(Vec<Box<ValueReference>>),
+    Subtract(Box<ValueReference>, Box<ValueReference>)
 }
 
 impl ValueReference for String {
@@ -130,6 +138,8 @@ pub(crate) fn render_formula(formula: &Formula) -> String {
         Formula::Concat(ref v) => format!("CONCATENATE({})", v.iter().map(|x| x.render()).collect::<Vec<String>>().join(",")),
         Formula::IfError(ref f, ref v) => format!("IFERROR({},{})", render_formula(f), v.render()),
         Formula::VerticalLookUp(ref a, ref b, ref c, ref d) => format!("VLOOKUP({},{},{},{})", a.render(), b.render(), c, d.to_string().to_uppercase()),
+        Formula::Sum(ref v) => format!("SUM({})", v.iter().map(|x| x.render()).collect::<Vec<String>>().join(",")),
+        Formula::Subtract(ref v1, ref v2) => format!("{}-{}", v1.render(), v2.render())
     }
 }
 
