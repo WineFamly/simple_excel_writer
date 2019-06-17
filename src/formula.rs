@@ -111,6 +111,7 @@ pub enum Formula {
     Subtract(Box<ValueReference>, Box<ValueReference>),
     Divide(Box<ValueReference>, Box<ValueReference>),
     Product(Vec<Box<ValueReference>>),
+    Round(Box<ValueReference>, i32),
 }
 
 impl ValueReference for String {
@@ -144,6 +145,7 @@ pub(crate) fn render_formula(formula: &Formula) -> String {
         Formula::Subtract(ref v1, ref v2) => format!("{}-{}", v1.render(), v2.render()),
         Formula::Divide(ref v1, ref v2) => format!("{}/{}", v1.render(), v2.render()),
         Formula::Product(ref v) => format!("PRODUCT({})", v.iter().map(|x| x.render()).collect::<Vec<String>>().join(",")),
+        Formula::Round(ref v, d) => format!("ROUND({},{})", v.render(), d),
     }
 }
 
